@@ -1,0 +1,27 @@
+contents:
+  repositories:
+  - https://dl-cdn.alpinelinux.org/alpine/v3.21/main
+  - https://dl-cdn.alpinelinux.org/alpine/v3.21/community
+  packages:
+  - openjdk21-jre-headless
+  - bash
+
+accounts:
+  groups:
+  - groupname: nonroot
+    gid: 10000
+  users:
+  - username: nonroot
+    uid: 10000
+  run-as: nonroot
+
+# optional environment configuration
+environment:
+  PATH: /usr/sbin:/sbin:/usr/bin:/bin:/usr/lib/jvm/java-21-openjdk/bin
+
+archs:
+  - amd64
+
+#  docker run --rm -v $pwd/:/app:rw -w /app ghcr.io/chainguard-dev/apko:v0.3.3 build jre-base.yaml jre:distroless distroless.tar
+#  docker load -i .\distroless.tar
+#  docker run --rm -it --entrypoint bash jre:distroless
